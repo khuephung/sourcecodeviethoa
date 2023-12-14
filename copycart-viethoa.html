@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      html {
+        line-height: 1.15;
+        -webkit-text-size-adjust: 100%;
+      }
+      body {
+        margin: 0;
+      }
+      main {
+        display: block;
+      }
+      h1 {
+        font-size: 2em;
+        margin: 0.67em 0;
+      }
+      hr {
+        box-sizing: content-box;
+        height: 0;
+        overflow: visible;
+      }
+      pre {
+        font-family: monospace, monospace;
+        font-size: 1em;
+      }
+      a {
+        background-color: transparent;
+      }
+      abbr[title] {
+        border-bottom: none;
+        text-decoration: underline;
+        text-decoration: underline dotted;
+      }
+      b,
+      strong {
+        font-weight: bolder;
+      }
+      code,
+      kbd,
+      samp {
+        font-family: monospace, monospace;
+        font-size: 1em;
+      }
+      small {
+        font-size: 80%;
+      }
+      sub,
+      sup {
+        font-size: 75%;
+        line-height: 0;
+        position: relative;
+        vertical-align: baseline;
+      }
+      sub {
+        bottom: -0.25em;
+      }
+      sup {
+        top: -0.5em;
+      }
+      img {
+        border-style: none;
+      }
+      button,
+      input,
+      optgroup,
+      select,
+      textarea {
+        font-family: inherit;
+        font-size: 100%;
+        line-height: 1.15;
+        margin: 0;
+      }
+      button,
+      input {
+        overflow: visible;
+      }
+      button,
+      select {
+        text-transform: none;
+      }
+      [type="button"],
+      [type="reset"],
+      [type="submit"],
+      button {
+        -webkit-appearance: button;
+      }
+      [type="button"]::-moz-focus-inner,
+      [type="reset"]::-moz-focus-inner,
+      [type="submit"]::-moz-focus-inner,
+      button::-moz-focus-inner {
+        border-style: none;
+        padding: 0;
+      }
+      [type="button"]:-moz-focusring,
+      [type="reset"]:-moz-focusring,
+      [type="submit"]:-moz-focusring,
+      button:-moz-focusring {
+        outline: 1px dotted ButtonText;
+      }
+      fieldset {
+        padding: 0.35em 0.75em 0.625em;
+      }
+      legend {
+        box-sizing: border-box;
+        color: inherit;
+        display: bang;
+        max-width: 100%;
+        padding: 0;
+        white-space: normal;
+      }
+      progress {
+        vertical-align: baseline;
+      }
+      textarea {
+        overflow: auto;
+      }
+      [type="checkbox"],
+      [type="radio"] {
+        box-sizing: border-box;
+        padding: 0;
+      }
+      [type="number"]::-webkit-inner-spin-button,
+      [type="number"]::-webkit-outer-spin-button {
+        height: auto;
+      }
+      [type="search"] {
+        -webkit-appearance: textfield;
+        outline-offset: -2px;
+      }
+      [type="search"]::-webkit-search-decoration {
+        -webkit-appearance: none;
+      }
+      ::-webkit-file-upload-button {
+        -webkit-appearance: button;
+        font: inherit;
+      }
+      details {
+        display: block;
+      }
+      summary {
+        display: list-item;
+      }
+      [hidden],
+      template {
+        display: none;
+      }
+
+      /* ============================== PHẦN ĐỊNH DẠNG CHUNG ================================================== */
+      /* Định dạng vị trí cho các section*/
+      .noi-dung-section {
+        position: relative; /* Đặt vị trí là relative cho các phần tử con sử dụng vị trí tương đối */
+      }
+
+      /* Định dạng kiểu văn bản cho các section */
+      .van-ban-section {
+        text-align: center;
+      }
+
+      /* Định dạng phần đầu của section */
+      .heading-section {
+        font-weight: 600;
+        letter-spacing: -0.02rem;
+        font-size: 28px;
+        position: relative;
+      }
+
+      /* Định dạng cho các Utility classes */
+      .u-c-secondary {
+        color: #333333 !important;
+      }
+
+      /* ======================Định dạng cho chữ==================== */
+      /* Phần định dạng cho các liên kết (links) */
+      .lien-ket {
+        font-size: 13px;
+        font-weight: 600;
+        color: #ff4500; /* Màu chữ mặc định */
+        transition: color 0.5s linear; /* Hiệu ứng chuyển đổi màu chữ */
+      }
+
+      .lien-ket:hover {
+        color: #fa4400; /* Màu chữ khi di chuột qua */
+      }
+
+      /* Phần định dạng cho tiêu đề cấp 1 (h1) */
+      .tieu-de-1 {
+        color: #333333; /* Màu chữ */
+        font-size: 18px;
+        margin-bottom: 8px; /* Khoảng cách dưới cùng */
+      }
+
+      /* Phần định dạng cho văn bản thông thường */
+      .van-ban-thuong {
+        display: block;
+        color: #a0a0a0; /* Màu chữ */
+        font-size: 13px;
+      }
+
+      /* Phần định dạng cho nhãn (label) */
+      .nhan-hop-chon {
+        margin-bottom: 8px; /* Khoảng cách dưới cùng */
+        display: block;
+        color: #333333; /* Màu chữ */
+        font-size: 13px;
+        font-weight: 600; /* Độ đậm của font */
+      }
+      /* ==================Hộp chọn Component=============================== */
+      /* Phần chung của hop-chon */
+      .hop-chon {
+        display: block;
+        max-width: 100%;
+        font-size: 13px;
+        font-weight: 600;
+        padding: 10px 12px 11px 15px; /* Kích thước và độ lề bên trong */
+        cursor: pointer;
+        line-height: 1.2;
+      }
+
+      /* Phong cách chính của hop-chon */
+      .hop-chon--style-co-ban {
+        color: #333333;
+        border: 2px solid transparent;
+        background-color: #f1f1f1; /* Màu nền */
+      }
+
+      /* Phong cách trong suốt với đường viền mảnh (border-width: 1px) */
+      .hop-chon--style-trong-suot {
+        color: #333333;
+        border: 1px solid transparent;
+        background-color: transparent;
+      }
+
+      .hop-chon:focus {
+        outline: 0; /* Loại bỏ đường viền focus */
+      }
+
+      /* Định dạng cho hop-chon khi ở trạng thái disabled */
+      .hop-chon:disabled {
+        background-color: #cecece;
+      }
+
+      /* Phong cách khi hop-chon được focus trên Edge */
+      .hop-chon--style-co-ban:focus::-ms-value {
+        color: #333333;
+        background-color: #f1f1f1;
+      }
+
+      .hop-chon--style-trong-suot:focus::-ms-value {
+        color: #333333;
+        background-color: #ffffff;
+      }
+
+      /* =====================Textarea Component=============================== */
+      /* Phần chung của Textarea */
+      .vung-van-ban {
+        height: 100%;
+        font-size: 12px;
+        font-weight: 600;
+        padding: 18px; /* Độ lề bên trong */
+        resize: vertical; /* Cho phép điều chỉnh chiều cao theo chiều dọc */
+      }
+
+      /* Bo góc cho Textarea */
+      .vung-van-ban--border-radius {
+        border-radius: 25px;
+      }
+
+      /* Phong cách chính của Textarea */
+      .vung-van-ban--style-co-ban {
+        color: #5c636c;
+        transition: all 0.6s linear;
+        border: 2px solid transparent;
+        background-color: #f1f1f1; /* Màu nền */
+      }
+
+      .vung-van-ban--style-co-ban:focus {
+        background-color: transparent;
+        border-color: #ff4500;
+      }
+
+      .vung-van-ban:focus {
+        outline: 0; /* Loại bỏ đường viền focus */
+      }
+
+      /* =============================Input Text Component====================== */
+      .van-ban-nhap-lieu {
+        font-size: 12px;
+        background-clip: padding-box;
+        padding: 0 18px;
+        height: 40px;
+      }
+
+      /* Bo góc cho Input Text */
+      .van-ban-nhap-lieu--border-radius {
+        border-radius: 25px;
+      }
+
+      /* Phong cách chính cho Input Text */
+      .van-ban-nhap-lieu--style-co-ban {
+        color: #333333;
+        transition: all 0.6s linear;
+        border: 2px solid transparent;
+        background-color: #f1f1f1;
+      }
+
+      .van-ban-nhap-lieu--style-co-ban:focus {
+        background-color: transparent;
+        border-color: #ff4500;
+      }
+
+      /* Phong cách 1 cho Input Text */
+      .van-ban-nhap-lieu--style-1 {
+        color: #5c636c;
+        transition: all 0.6s linear;
+        border: 1px solid transparent;
+        background-color: #f1f1f1;
+      }
+
+      .van-ban-nhap-lieu--style-1:focus {
+        box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.1);
+        background-color: transparent;
+        border-color: #eee;
+      }
+
+      /* Phong cách 2 cho Input Text */
+      .van-ban-nhap-lieu--style-2 {
+        color: #5c636c;
+        border: 1px solid transparent;
+        background-color: #f1f1f1;
+        transition: all 0.6s linear;
+      }
+
+      .van-ban-nhap-lieu--style-2:focus {
+        background-color: #ffffff;
+      }
+
+      /* Chỉ màu trắng cho Input Text */
+      .van-ban-nhap-lieu--only-white {
+        border: 1px solid transparent;
+        color: #333333;
+        background-color: #ffffff;
+      }
+
+      .van-ban-nhap-lieu:focus {
+        outline: 0; /* Loại bỏ đường viền focus */
+      }
+
+      /* Định dạng khi Input Text ở trạng thái disabled */
+      .van-ban-nhap-lieu:disabled {
+        background-color: #cecece;
+      }
+
+      /* Loại bỏ x button trong trình duyệt IE */
+      input::-ms-clear {
+        display: none;
+      }
+
+      /* ==================================Button Componant==================================== */
+
+      /* Phần chung của Button */
+      .nut {
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        cursor: pointer;
+        font-size: 14px;
+      }
+
+      .nut:focus {
+        outline: none; /* Loại bỏ đường viền focus */
+      }
+
+      .nut--icon {
+        border: none;
+        background-color: transparent;
+        padding: 0;
+      }
+
+      /* Phong cách cho Button màu brand */
+      .nut--chu-trang {
+        color: #ffffff;
+        border: 1px solid transparent;
+        background-color: #ff4500;
+        transition: background-color 0.5s ease-in;
+      }
+
+      .nut--chu-trang:hover {
+        background-color: #fa4400;
+      }
+
+      /* Phong cách cho Button màu brand với border 2px */
+      .nut--chu-trang-b-2 {
+        color: #ffffff;
+        background-color: #ff4500;
+        border: 2px solid #ff4500;
+        transition: background-color 0.5s ease-in, border-color 0.5s ease-in;
+      }
+
+      .nut--chu-trang-b-2:hover {
+        background-color: #fa4400;
+        border-color: #fa4400;
+      }
+
+      /* Phong cách cho Button màu xám */
+      .nut--chu-xam-b-2 {
+        color: #333333;
+        background-color: #f5f5f5;
+        border: 2px solid #f5f5f5;
+        transition: background-color 0.5s ease-in, border-color 0.5s ease-in;
+      }
+
+      .nut--chu-xam-b-2:hover {
+        background-color: #f2f2f2;
+        border-color: #f2f2f2;
+      }
+
+      /* Phong cách cho Button màu secondary */
+      .nut--chu-trang-nen-den {
+        color: #ffffff;
+        border: 1px solid transparent;
+        background-color: #333333;
+        transition: background-color 0.5s ease-in;
+      }
+
+      .nut--chu-trang-nen-den:hover {
+        background-color: #303030;
+      }
+
+      /* Phong cách cho Button màu trắng brand */
+      .nut--chu-den-nen-trang {
+        border: 1px solid transparent;
+        color: #333333;
+        background-color: #ffffff;
+        transition: background-color 0.3s linear, color 0.3s linear;
+      }
+
+      .nut--chu-den-nen-trang:hover {
+        background-color: #ff4500;
+        color: #ffffff;
+      }
+
+      /* Phong cách cho Button trong suốt màu brand với border 2px */
+      .nut--nen-trong-suot-b-2 {
+        color: #ff4500;
+        border: 2px solid #ff4500;
+        background-color: transparent;
+        transition: border-color 0.5s ease-in;
+      }
+
+      .nut--nen-trong-suot-b-2:hover {
+        border-color: #fa4400;
+      }
+
+      /* Phong cách cho Button trong suốt màu brand với hiệu ứng màu khi hover */
+      .nut--nen-trong-suot-hover-b-2 {
+        color: #ff4500;
+        border: 2px solid #ff4500;
+        background-color: transparent;
+        transition: background-color 0.1s ease-in, border-color 0.1s ease-in;
+      }
+
+      .nut--nen-trong-suot-hover-b-2:hover {
+        background-color: #ff4500;
+        color: #ffffff;
+      }
+
+      /* Phong cách cho Button trong suốt màu secondary với border 2px */
+      .nut--nen-trong-suot-phu-b-2 {
+        color: #333333;
+        border: 2px solid #333333;
+        background-color: transparent;
+        transition: border-color 0.5s ease-in;
+      }
+
+      .nut--nen-trong-suot-phu-b-2:hover {
+        border-color: #303030;
+      }
+
+      /* Phong cách cho Button trong suốt màu platinum với border 2px */
+      .nut--nen-trong-suot-platinum-b-2 {
+        color: #333333;
+        border: 2px solid #e5e5e5;
+        background-color: transparent;
+        transition: border-color 0.5s linear;
+      }
+
+      .nut--nen-trong-suot-platinum-b-2:hover {
+        border-color: #ff4500;
+      }
+
+      /* Phong cách cho Button màu trắng brand với đổ bóng */
+      .nut--chu-den-nen-trang-shadow {
+        border: 1px solid #eee;
+        box-shadow: 1px 2px 8px 0 rgba(36, 37, 38, 0.08);
+        background-color: #ffffff;
+        color: #333333;
+        transition: background-color 0.3s linear, border-color 0.3s linear,
+          color 0.3s linear;
+      }
+
+      .nut--chu-den-nen-trang-shadow:hover {
+        border-color: #ff4500;
+        background-color: #ff4500;
+        color: #ffffff;
+      }
+
+      /* Phong cách cho Button màu brand với đổ bóng */
+      .nut--chu-trang-shadow {
+        border: 1px solid #ff4500;
+        box-shadow: 1px 2px 8px 0 rgba(36, 37, 38, 0.08);
+        background-color: #ff4500;
+        color: #ffffff;
+        transition: background-color 0.3s linear, border-color 0.3s linear;
+      }
+
+      .nut--chu-trang-shadow:hover {
+        border-color: #fa4400;
+        background-color: #fa4400;
+      }
+
+      /* Section 1: Bảng giỏ hàng */
+      /* Định dạng responsive cho Bảng giỏ hàng */
+      .bang-responsive {
+        overflow-x: auto; /* Cho phép cuộn ngang khi nội dung vượt quá kích thước của bảng */
+      }
+
+      /* Định dạng cho phần khung bảng */
+      .bang-p {
+        width: 100%;
+        border: 1px solid #eee; /* Đặt đường biên 1px và màu xám nhạt */
+        border-collapse: collapse; /* Collapse các đường biên để tránh hiển thị đường biên nội dung */
+      }
+      .bang-p tr {
+        position: relative;
+        border-top: 1px solid #eee; /* Đặt đường biên phía trên mỗi hàng */
+      }
+      .bang-p td {
+        padding: 20px; /* Thêm padding cho ô bảng để tạo khoảng trắng xung quanh nội dung */
+      }
+      .bang-p__box {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+        -ms-flex-align: center;
+        align-items: center; /* Sử dụng flexbox để căn giữa nội dung trong ô bảng */
+      }
+      .bang-p__img-wrap {
+        display: inline-block;
+        vertical-align: middle;
+        background-color: #f5f5f5; /* Màu nền cho container hình ảnh */
+        width: 120px;
+        height: 120px; /* Kích thước cố định cho container hình ảnh */
+      }
+      .bang-p__img-wrap img {
+        display: block;
+        min-width: 120px; /* Hiển thị hình ảnh là một block và đặt kích thước tối thiểu */
+      }
+      .bang-p__info {
+        margin-left: 18px; /* Tạo khoảng cách bên trái cho phần thông tin sản phẩm */
+      }
+      .bang-p__ten-san-pham {
+        display: block;
+      }
+      .bang-p__ten-san-pham > a {
+        color: #333333;
+        font-size: 14px;
+        font-weight: 600;
+        transition: color 0.5s; /* Hiệu ứng màu khi di chuột qua tên sản phẩm */
+      }
+      .bang-p__ten-san-pham > a:hover {
+        color: #ff4500; /* Màu sắc khi di chuột qua thay đổi thành màu cam */
+      }
+      .bang-p__phan-loai {
+        display: block;
+      }
+      .bang-p__phan-loai > a {
+        color: #a0a0a0;
+        transition: color 0.5s;
+        font-size: 12px;
+      }
+      .bang-p__phan-loai > a:hover {
+        color: #ff4500;
+      }
+      .bang-p__variant-list {
+        margin: 0;
+        padding: 0;
+        list-style: none; /* Loại bỏ kiểu danh sách cho danh sách biến thể */
+      }
+      .bang-p__variant-list > li > span {
+        color: #a0a0a0;
+        font-size: 12px;
+      }
+      .bang-p__gia {
+        text-align: center;
+        display: block;
+        color: #333333;
+        font-size: 14px;
+        font-weight: 600;
+      }
+      .bang-p__dem-nhap-lieu-wrap {
+        text-align: center; /* Căn giữa cho container đếm đầu vào */
+      }
+      .bang-p__del-wrap {
+        text-align: center; /* Căn giữa cho container xóa */
+      }
+      .bang-p__delete-link {
+        padding: 10px;
+        font-size: 16px;
+        display: inline-block;
+        color: #333333;
+        transition: color 0.5s; /* Hiệu ứng màu khi di chuột qua nút xóa */
+      }
+      .bang-p__delete-link:hover {
+        color: #ff4500; /* Màu sắc khi di chuột qua thay đổi thành màu cam */
+      }
+
+      /* Phần định dạng cho hộp thông tin sản phẩm (w-r) */
+      .w-r {
+        background-color: #ffffff; /* Màu nền trắng */
+        border: 1px solid #eee; /* Đường biên mảnh màu xám nhạt */
+        box-shadow: 1px 1px 6px 0 rgba(0, 0, 0, 0.07); /* Hiệu ứng bóng đổ nhẹ */
+      }
+      .w-r__container {
+        display: -ms-flexbox;
+        display: flex;
+        padding: 20px; /* Khoảng cách padding bên trong container */
+        -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+        -ms-flex-align: center;
+        align-items: center;
+        -ms-flex-pack: justify;
+        justify-content: space-between; /* Căn giữa và tạo khoảng trắng giữa các phần tử */
+      }
+      .w-r__wrap-1,
+      .w-r__wrap-2 {
+        -ms-flex: 0 1 auto;
+      }
+      .w-r__wrap-1 {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+        -ms-flex-align: center;
+        align-items: center;
+        -ms-flex-pack: start;
+        justify-content: flex-start; /* Căn trái cho phần tử w-r__wrap-1 */
+      }
+      .w-r__img-wrap {
+        display: inline-block;
+        vertical-align: middle;
+        background-color: #f5f5f5; /* Màu nền cho container hình ảnh */
+        width: 120px;
+        height: 120px; /* Kích thước cố định cho container hình ảnh */
+      }
+      .w-r__img-wrap img {
+        display: block;
+        min-width: 120px; /* Hiển thị hình ảnh là một block và đặt kích thước tối thiểu */
+      }
+      .w-r__info {
+        margin-left: 18px; /* Tạo khoảng cách bên trái cho phần thông tin sản phẩm */
+      }
+      .w-r__ten-san-pham {
+        display: block;
+      }
+      .w-r__ten-san-pham > a {
+        color: #333333;
+        font-size: 14px;
+        font-weight: 600;
+        transition: color 0.5s; /* Hiệu ứng màu khi di chuột qua tên sản phẩm */
+      }
+      .w-r__ten-san-pham > a:hover {
+        color: #ff4500; /* Màu sắc khi di chuột qua thay đổi thành màu cam */
+      }
+      .w-r__phan-loai {
+        display: block;
+        margin-bottom: 2px; /* Tạo khoảng cách bên dưới cho phần danh mục */
+      }
+      .w-r__phan-loai > a {
+        color: #a0a0a0;
+        transition: color 0.5s;
+        font-size: 12px;
+      }
+      .w-r__phan-loai > a:hover {
+        color: #ff4500; /* Màu sắc khi di chuột qua thay đổi thành màu cam */
+      }
+      .w-r__gia {
+        display: block;
+        color: #ff4500;
+        font-size: 14px;
+        font-weight: 600;
+      }
+      .w-r__discount {
+        font-weight: 600;
+        margin-left: 12px;
+        color: #333333;
+        font-size: 14px;
+        text-decoration: line-through; /* Gạch ngang với giá trước khi giảm giá */
+      }
+      .w-r__link {
+        font-size: 12px;
+        font-weight: 600;
+        display: inline-block;
+        border-radius: 5px;
+        margin: 0 0 10px 10px;
+        padding: 12px 30px; /* Kích thước và padding cho các liên kết */
+      }
+
+      /* Phần định dạng cho hộp điều hướng (hop-dieu-huong) */
+      .hop-dieu-huong {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-align: center;
+        align-items: center;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        background-color: #f1f1f1; /* Màu nền xám nhạt */
+        -ms-flex-pack: justify;
+        justify-content: space-between; /* Căn giữa và tạo khoảng trắng giữa các phần tử */
+      }
+      .hop-dieu-huong__g {
+        -ms-flex: 0 1 auto;
+      }
+      .hop-dieu-huong__link {
+        color: #333333;
+        font-size: 13px;
+        text-align: center;
+        padding: 17px; /* Kích thước và padding cho đường dẫn */
+        font-weight: 600;
+        display: inline-block;
+        transition: color 0.5s; /* Hiệu ứng màu khi di chuột qua đường dẫn */
+      }
+      .hop-dieu-huong__link:hover {
+        color: #ff4500; /* Màu sắc khi di chuột qua thay đổi thành màu cam */
+      }
+      .hop-dieu-huong i {
+        margin-right: 2px; /* Khoảng cách bên phải giữa biểu tượng và văn bản */
+      }
+
+      /* Phần định dạng cho hộp giỏ hàng (f-cart) */
+      .f-cart__hop-dem {
+        /* Hộp đệm */
+        border: 1px solid #eee; /* Đường biên mảnh màu xám nhạt */
+        padding: 32px 22px 35px; /* Kích thước và padding cho hộp giỏ hàng */
+      }
+      .f-cart__bang {
+        width: 100%;
+        border-collapse: collapse; /* Collapse các đường biên để tránh hiển thị đường biên nội dung */
+      }
+      .f-cart__bang td {
+        color: #333333;
+        vertical-align: middle;
+        font-size: 14px;
+        font-weight: 600;
+        padding: 8px 0; /* Kích thước và padding cho ô bảng */
+      }
+      .f-cart__bang td:first-child {
+        text-align: left; /* Căn trái cho ô bảng đầu tiên của mỗi hàng */
+      }
+      .f-cart__bang td {
+        text-align: right; /* Căn phải cho các ô bảng còn lại */
+      }
+      .f-cart__bang tr:last-child td {
+        font-size: 16px;
+        font-weight: 700;
+        color: #ff4500; /* Màu cam cho hàng cuối cùng trong bảng giỏ hàng */
+      }
+
+      .f-cart__ship-link {
+        font-size: 13px;
+        text-align: center;
+        padding: 17px;
+        font-weight: 600;
+        border-radius: 6px;
+        display: block; /* Hiển thị dưới dạng block để chiếm toàn bộ chiều rộng của container cha */
+      }
+
+      /* Phần định dạng cho các phần tử nhập liệu trong giỏ hàng */
+      .f-cart .van-ban-nhap-lieu,
+      .f-cart .hop-chon,
+      .f-cart .vung-van-ban,
+      .f-cart .nut {
+        border-radius: 6px;
+        width: 100%; /* Các phần tử nhập liệu và nút có đường viền cong và chiều rộng 100% */
+      }
+
+      .f-cart .vung-van-ban {
+        height: 350px; /* Chiều cao cho ô văn bản lớn (vung-van-ban) */
+      }
+
+      .f-cart .nut {
+        padding: 16px;
+        font-weight: 600;
+        font-size: 13px; /* Kích thước và padding cho nút */
+      }
+
+      /* 2 */
+
+      /* Khi màn hình có độ rộng tối đa là 991px */
+      @media (max-width: 991px) {
+        /* Chuyển định dạng của w-r__wrap-2 thành dạng cột và canh chỉnh nó về phía cuối cùng */
+        .w-r__wrap-2 {
+          display: -ms-flexbox;
+          display: flex;
+          -ms-flex-direction: column;
+          flex-direction: column;
+          -ms-flex-wrap: nowrap;
+          flex-wrap: nowrap;
+          -ms-flex-align: end;
+          align-items: flex-end;
+        }
+      }
+
+      /* Khi màn hình có độ rộng tối đa là 767px */
+      @media (max-width: 767px) {
+        /* Đặt độ rộng tối thiểu cho ô bảng là 200px */
+        .bang-p td {
+          min-width: 200px;
+        }
+
+        /* Chuyển định dạng của container w-r thành dạng cột (thay vì dạng hàng) */
+        .w-r__container {
+          -ms-flex-direction: column;
+          flex-direction: column;
+        }
+
+        /* Chuyển định dạng của w-r__wrap-1 thành dạng cột (thay vì dạng hàng) */
+        .w-r__wrap-1 {
+          -ms-flex-direction: column;
+          flex-direction: column;
+        }
+
+        /* Canh giữa văn bản trong phần thông tin của sản phẩm */
+        .w-r__info {
+          text-align: center;
+          margin: 15px 0 15px; /* Tạo khoảng cách xung quanh */
+        }
+
+        /* Canh giữa phần tử trong w-r__wrap-2 */
+        .w-r__wrap-2 {
+          -ms-flex-align: center;
+          align-items: center;
+        }
+      }
+
+      /* =================Bộ đếm nhập liệu Component===========================*/
+
+      /* Phần chung của dem-nhap-lieu */
+      .dem-nhap-lieu {
+        position: relative;
+        display: inline-block;
+        max-width: 132px;
+        min-width: 132px; /* Độ rộng tối đa và tối thiểu của dem-nhap-lieu */
+      }
+
+      /* Phần văn bản của dem-nhap-lieu */
+      .dem-nhap-lieu__text {
+        border-radius: 25px;
+        display: block;
+        width: 100%;
+        height: 50px;
+        font-size: 14px;
+        font-weight: 600;
+        text-align: center; /* Hiển thị văn bản ở giữa ô input */
+      }
+
+      /* Loại bỏ đường viền khi input được focus */
+      .dem-nhap-lieu__text:focus {
+        outline: 0;
+      }
+
+      /* Phong cách chính cho dem-nhap-lieu khi là text input */
+      .dem-nhap-lieu--text-style-co-ban {
+        color: #333333;
+        transition: all 0.6s linear;
+        border: 2px solid transparent;
+        background-color: #f1f1f1; /* Màu nền của input */
+      }
+
+      /* Thay đổi phong cách khi input được focus */
+      .dem-nhap-lieu--text-style-co-ban:focus {
+        background-color: transparent;
+        border-color: #ff4500; /* Màu đường viền khi focus */
+      }
+
+      /* Nút giảm và nút tăng */
+      .dem-nhap-lieu__giam,
+      .dem-nhap-lieu__tang {
+        top: 0;
+        display: inline-block;
+        font-size: 10px;
+        cursor: pointer;
+        position: absolute;
+        width: 50px;
+        line-height: 50px;
+        height: 100%;
+        text-align: center;
+        color: #7f7f7f;
+        transition: color 0.5s; /* Hiệu ứng màu khi di chuột qua */
+      }
+
+      /* Thay đổi màu sắc khi di chuột qua nút giảm và nút tăng */
+      .dem-nhap-lieu__giam:hover,
+      .dem-nhap-lieu__tang:hover {
+        color: #333333;
+      }
+
+      /* Định dạng cho nút giảm, được đặt bên trái */
+      .dem-nhap-lieu__giam {
+        left: 0;
+      }
+
+      /* Định dạng cho nút tăng, được đặt bên phải */
+      .dem-nhap-lieu__tang {
+        right: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Section 1: Bảng giỏ hàng -->
+    <!-- Title trang -->
+    <div class="noi-dung-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="van-ban-section">
+              <h1 class="heading-section u-c-secondary">GIỎ HÀNG</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Danh sách sản phẩm trong giỏ hàng -->
+    <div class="noi-dung-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <!-- Bảng đáp ứng cho danh sách sản phẩm -->
+            <div class="bang-responsive">
+              <!-- Bảng sản phẩm -->
+              <table class="bang-p">
+                <tbody>
+                  <!--====== Hàng ======-->
+                  <tr>
+                    <!-- Cột chi tiết sản phẩm -->
+                    <td>
+                      <!-- Hộp sản phẩm chứa hình ảnh và thông tin -->
+                      <div class="bang-p__box">
+                        <!-- Hình ảnh sản phẩm -->
+                        <div class="bang-p__img-wrap">
+                          <img
+                            class="u-img-fluid"
+                            src="images/product/electronic/product3.jpg"
+                            alt=""
+                          />
+                        </div>
+                        <!-- Thông tin sản phẩm -->
+                        <div class="bang-p__info">
+                          <!-- Tên sản phẩm với liên kết đến trang chi tiết -->
+                          <span class="bang-p__ten-san-pham"
+                            ><a href="product-detail.html"
+                              >Filter Kính Thực Tế Ảo</a
+                            ></span
+                          >
+                          <!-- Danh mục sản phẩm với liên kết -->
+                          <span class="bang-p__phan-loai"
+                            ><a href="shop-side-version-2.html"
+                              >AR Filter</a
+                            ></span
+                          >
+                          <!-- Chi tiết biến thể như kích thước và màu sắc -->
+                          <ul class="bang-p__variant-list">
+                            <li><span>Size: 22</span></li>
+                            <li><span>Màu sắc: Đỏ</span></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </td>
+                    <!-- Cột giá sản phẩm -->
+                    <td>
+                      <!-- Hiển thị giá sản phẩm -->
+                      <span class="bang-p__gia">100.000 đ</span>
+                    </td>
+                    <!-- Cột nhập số lượng -->
+                    <td>
+                      <!-- Bộ đếm đầu vào để điều chỉnh số lượng -->
+                      <div class="bang-p__dem-nhap-lieu-wrap">
+                        <!-- Nút trừ -->
+                        <div class="dem-nhap-lieu">
+                          <span class="dem-nhap-lieu__giam fas fa-minus"></span>
+                          <!-- Đầu vào số lượng -->
+                          <input
+                            class="dem-nhap-lieu__text dem-nhap-lieu--text-style-co-ban"
+                            type="text"
+                            value="1"
+                            data-min="1"
+                            data-max="1000"
+                          />
+                          <!-- Nút cộng -->
+                          <span class="dem-nhap-lieu__tang fas fa-plus"></span>
+                        </div>
+                        <!-- Kết thúc - Bộ đếm đầu vào -->
+                      </div>
+                    </td>
+                    <!-- Cột xóa sản phẩm -->
+                    <td>
+                      <!-- Nút để xóa sản phẩm khỏi giỏ hàng -->
+                      <div class="bang-p__del-wrap">
+                        <a
+                          class="far fa-trash-alt bang-p__delete-link"
+                          href="#"
+                        ></a>
+                      </div>
+                    </td>
+                  </tr>
+                  <!-- Kết thúc - Hàng -->
+
+                  <!-- Các hàng tương tự cho các sản phẩm khác trong giỏ hàng -->
+                  <!-- ... -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- Nút điều hướng và hành động -->
+          <div class="col-lg-12">
+            <!-- Hộp nút điều hướng và hành động -->
+            <div class="hop-dieu-huong">
+              <!-- Nút tiếp tục mua sắm -->
+              <div class="hop-dieu-huong__g1">
+                <a class="hop-dieu-huong__link" href="shop-side-version-2.html"
+                  ><i class="fas fa-long-arrow-alt-left"></i
+                  ><span>TIẾP TỤC MUA SẮM</span></a
+                >
+              </div>
+              <!-- Nút xóa giỏ hàng và cập nhật giỏ hàng -->
+              <div class="hop-dieu-huong__g2">
+                <!-- Nút xóa giỏ hàng -->
+                <a class="hop-dieu-huong__link" href="cart.html"
+                  ><i class="fas fa-trash"></i><span>XÓA GIỎ HÀNG</span></a
+                >
+                <!-- Nút cập nhật giỏ hàng -->
+                <a class="hop-dieu-huong__link" href="cart.html"
+                  ><i class="fas fa-sync"></i><span>CẬP NHẬT GIỎ HÀNG</span></a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Section 2: Tính phí ship -->
+    <div class="noi-dung-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12 col-sm-12">
+            <form class="f-cart">
+              <div class="row">
+                <!-- Section 2.1: Chọn nơi nhận hàng -->
+                <div class="col-lg-4 col-md-6">
+                  <div class="f-cart__hop-dem">
+                    <h1 class="tieu-de-1">ESTIMATE SHIPPING AND TAXES</h1>
+
+                    <span class="van-ban-thuong"
+                      >Nhập nơi bạn muốn nhận hàng để tính toán phí ship và thuế.</span
+                    >
+                    <div class="">
+                      <!--====== Select Box ======-->
+
+                      <label class="nhan-hop-chon" for="shipping-country"
+                        >QUỐC GIA *</label
+                      ><select
+                        class="hop-chon hop-chon--style-co-ban"
+                        id="shipping-country"
+                      >
+                        <option selected value="">Chọn Quốc Gia</option>
+                        <option value="vn">Việt Nam (VN)</option>
+                        <option value="kr">Hàn Quốc (KR)</option>
+                        <option value="jp">Nhật Bản (JP)</option>
+                        <option value="cn">Trung Quốc (CN)</option>
+                        <option value="tl">Thái Lan (TL)</option>
+                        <option value="la">Lào (LA)</option>
+                        <option value="cbd">Campuchia (CBD)</option>
+                      </select>
+                      <!--====== End - Select Box ======-->
+                    </div>
+                    <div class="">
+                      <!--====== Select Box ======-->
+
+                      <label class="nhan-hop-chon" for="shipping-state"
+                        >Thành phố/Tỉnh thành *</label
+                      ><select
+                        class="hop-chon hop-chon--style-co-ban"
+                        id="shipping-state"
+                      >
+                        <option selected value="">Chọn Thành Phố/Tỉnh Thành</option>
+                        <option value="sg">TP. Hồ Chí Minh</option>
+                        <option value="dn">Đà Nẵng</option>
+                        <option value="nh">Hà Nội</option>
+                        <option value="bd">Bình Định</option>
+                        <option value="hue">Huế</option>
+                        <option value="qt">Quảng Trị</option>
+                      </select>
+                      <!--====== End - Select Box ======-->
+                    </div>
+                    <div class="">
+                      <label class="nhan-hop-chon" for="shipping-zip"
+                        >Mã ZIP/Bưu điện *</label
+                      >
+
+                      <input
+                        class="van-ban-nhap-lieu van-ban-nhap-lieu--style-co-ban"
+                        type="text"
+                        id="shipping-zip"
+                        placeholder="Mã Zip/Bưu điện"
+                      />
+                    </div>
+                    <div class="">
+                      <a
+                        class="f-cart__ship-link nut--nen-trong-suot-b-2"
+                        href="cart.html"
+                        >TÍNH PHÍ SHIP</a
+                      >
+                    </div>
+
+                    <span class="van-ban-thuong"
+                      >Lưu ý: Có một số quốc gia áp dụng miễn phí vận chuyển, nếu không, phí vận chuyển cố định hoặc phí giao hàng theo quốc gia của chúng tôi sẽ được áp dụng.</span
+                    >
+                  </div>
+                </div>
+
+                <!-- Section 2.2: Note ghi chú cho đơn hàng -->
+                <div class="col-lg-4 col-md-6">
+                  <div class="f-cart__hop-dem">
+                    <h1 class="tieu-de-1">GHI CHÚ</h1>
+
+                    <span class="van-ban-thuong"
+                      >Để lại lời nhắn dành cho sản phẩm của bạn</span
+                    >
+                    <div>
+                      <label for="f-cart-note"></label
+                      ><textarea
+                        class="vung-van-ban vung-van-ban--style-co-ban"
+                        id="f-cart-note"
+                      ></textarea>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Section 2.3: Phí ship -->
+                <div class="col-lg-4 col-md-6">
+                  <div class="f-cart__hop-dem">
+                    <div class="">
+                      <table class="f-cart__bang">
+                        <tbody>
+                          <tr>
+                            <td>PHÍ SHIP</td>
+                            <td>0 đ</td>
+                          </tr>
+                          <tr>
+                            <td>THUẾ (VAT)</td>
+                            <td>10.000 đ</td>
+                          </tr>
+                          <tr>
+                            <td>TẠM TÍNH</td>
+                            <td>100.000 đ</td>
+                          </tr>
+                          <tr>
+                            <td>TỔNG CỘNG</td>
+                            <td>110.000 đ</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div>
+                      <button class="nut nut--chu-trang-b-2" type="submit">
+                        TIẾN HÀNH THANH TOÁN
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
